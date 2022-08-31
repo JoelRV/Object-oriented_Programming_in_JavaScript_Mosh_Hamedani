@@ -37,4 +37,28 @@ function Circle(radius, location) {
 
 const circle3 = new Circle(3, {});
 console.log(circle3.draw());
+
 console.log(circle3.constructor);
+console.log(circle.constructor); // we see here that object literals use the js Object() constructor
+
+// VALUE TYPES OR PRIMITIVES IN JAVASCRIPT
+// Number, String, Boolean, Symbol, undefined, null
+
+//REFERENCE TYPES
+// Object, Function, Array BUT the last types are also Objects, so ...
+
+// when we use reference types, storing them in variables saves them by reference in memory, thus point to the same entity
+// Value types are copied by Value, thus point to different entities
+
+//Example
+let x = 20;
+let y = x;
+
+x = 10;
+console.log(`PRIMITIVES: X = ${x} and Y = ${y}`);
+
+x = { value: 20 };
+y = x;
+
+x.value = 10;
+console.log(`X = ${x.value} and Y = ${y.value}`); // in this case the same object is modified
