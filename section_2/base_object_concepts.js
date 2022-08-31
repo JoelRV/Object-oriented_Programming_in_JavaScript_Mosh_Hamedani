@@ -11,3 +11,16 @@ const circle = {
 };
 
 circle.draw();
+// factory
+function createCircle(radius, location) {
+    return {
+        radius, // alternative use radius : this.radius
+        location,
+        draw: function () {
+            console.log("draw");
+        },
+    };
+}
+
+const circle2 = createCircle(2, {});
+console.log(circle2.draw());
