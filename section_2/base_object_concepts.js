@@ -78,3 +78,14 @@ console.log(circle4);
 //delete property
 delete circle4[propertyName];
 console.log(circle4);
+
+// Enumerating Properties
+for (let key in circle4) {
+    console.log(key);
+}
+//or
+console.log(Object.keys(circle4)); // returns array
+
+if ("radius" in circle4) {
+    console.log("Circle has a radius.");
+} // check for existance of a property
