@@ -62,3 +62,19 @@ y = x;
 
 x.value = 10;
 console.log(`X = ${x.value} and Y = ${y.value}`); // in this case the same object is modified
+
+// Removing and adding properties
+const circle4 = new Circle(4);
+
+circle4.location = { x: 1 }; // dot notation
+circle4["location"] = { x: 1 }; // bracket notation
+
+//advantages of bracket notation: allow for dynamic access and invalid property names in dot noation
+//example
+const propertyName = "center-location";
+circle4[propertyName] = 0;
+console.log(circle4);
+
+//delete property
+delete circle4[propertyName];
+console.log(circle4);
