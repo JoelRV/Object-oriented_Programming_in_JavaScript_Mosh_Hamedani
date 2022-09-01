@@ -100,6 +100,28 @@ function CircleAbstract(radius, location) {
         // stuff
     };
 
+    // we can then define a method that returns the value
+    // of our variable, without it being accesible from the user instance
+    // this.getDefaultLocation = function () {
+    //     return defaultLocation;
+    // };
+
+    // a cleaner way is to set a readonly property usinf Object.defineProperty
+    // this allos to set a get method and the property can be accessed using
+    // circle.defaultLocation
+    // on top of that you can also define a set method
+    Object.defineProperty(this, "defaultLocation", {
+        get: function () {
+            return defaultLocation;
+        },
+        set: function (value) {
+            if (!value.x || !value.y) {
+                throw new Error("Invalid location.");
+            }
+            defaultLocation = value;
+        },
+    });
+
     this.radius = radius;
     this.location = location;
     this.draw = function () {
@@ -113,5 +135,7 @@ function CircleAbstract(radius, location) {
     // return this is implicit when using the new operator later
 }
 
-const circleAbs = CircleAbstract(1, {});
-//console.log(circleAbs.defaultLocation); // will throw error of undefined property
+const circleAbs = new CircleAbstract(1, {});
+//circleAbs.defaultLocation = 1; // thows error
+circleAbs.defaultLocation = { x: 1, y: 2 };
+console.log(circleAbs.defaultLocation); // will throw error of undefined property
