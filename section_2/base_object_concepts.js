@@ -89,3 +89,29 @@ console.log(Object.keys(circle4)); // returns array
 if ("radius" in circle4) {
     console.log("Circle has a radius.");
 } // check for existance of a property
+
+// exemples of abstraction
+function CircleAbstract(radius, location) {
+    // one way to hide implementation details if to use
+    // scope variables that will cease to exist outside of
+    // the function call
+    let defaultLocation = { x: 1, y: 2 };
+    let computeOptimumLocation = function (token) {
+        // stuff
+    };
+
+    this.radius = radius;
+    this.location = location;
+    this.draw = function () {
+        // given closure we can use the declared vars
+        // and compute something that won't be accessible
+        // in the object instance
+        computeOptimumLocation(0.1);
+
+        console.log("draw");
+    };
+    // return this is implicit when using the new operator later
+}
+
+const circleAbs = CircleAbstract(1, {});
+//console.log(circleAbs.defaultLocation); // will throw error of undefined property
