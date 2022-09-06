@@ -53,3 +53,37 @@ console.log(person.name);
 delete person.name;
 console.log(person.name);
 // As we can see setting writable and configurable to false doesn't allow us to change or delete the name property
+
+// lets look how constructor prototypes work
+function Circle(radius) {
+    // instance members
+    this.radius = radius;
+
+    this.move = function () {
+        this.draw();
+        console.log("move");
+    };
+}
+// here the Circle constructor will have a prototype property that points to the
+// prototype each instance will have.
+const c1 = new Circle(1);
+const c2 = new Circle(2);
+
+console.log(Object.getPrototypeOf(c1) === Object.getPrototypeOf(c2)); // true
+
+//currently the draw method is an instance method, thus in memory each Circle instance will
+// have it's own copy
+
+// A more efficient wayto implement it is to define draw in the constructor prototype,
+//given the fact that this method does not change and each instance can't directly look it up
+// in their prototype
+
+//Prototype members
+Circle.prototype.draw = function () {
+    console.log("draw");
+};
+
+console.log(`Object.getPrototypeOf(c1)`, Object.getPrototypeOf(c1));
+
+// prototype members are scoped with instance members. This means that they can call on each other. for example
+console.log(c1.move()); // calls draw from the constructor prototype
