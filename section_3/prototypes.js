@@ -87,3 +87,11 @@ console.log(`Object.getPrototypeOf(c1)`, Object.getPrototypeOf(c1));
 
 // prototype members are scoped with instance members. This means that they can call on each other. for example
 console.log(c1.move()); // calls draw from the constructor prototype
+
+//iterating of instance vs prototypes members
+
+console.log(`Object.keys(c1)`, Object.keys(c1)); // only instances
+for (let key in c1) console.log(key); // returns instance + prototype
+// in javascript instance properties are often referenced as "Own", which explains
+console.log(c1.hasOwnProperty("move")); // true
+console.log(c1.hasOwnProperty("draw")); // false
