@@ -27,3 +27,29 @@ console.log(
     `Object.getPrototypeOf(Object.getPrototypeOf(Object.getPrototypeOf(arr)))`,
     Object.getPrototypeOf(Object.getPrototypeOf(Object.getPrototypeOf(arr)))
 );
+
+// Property descriptors
+let person = { name: "Mosh" };
+
+console.log(Object.keys(person)); // only name is shown, other props, like proporties do not show up
+
+let objectBase = Object.getPrototypeOf(person);
+let descriptor = Object.getOwnPropertyDescriptor(objectBase, "toString");
+
+console.log(descriptor);
+// we here see the concept of descriptor metadata. It contains key:value pairs that define
+// if the method/property is writable (can be overwritten), enumerable (Object.Keys) or configurable ie can be deleted. Value shows the implemented version of the method here.
+
+Object.defineProperty(person, "name", {
+    writable: false,
+    enumerable: true,
+    configurable: false,
+});
+
+// here we manually set the descriptor
+
+person.name = "JJ";
+console.log(person.name);
+delete person.name;
+console.log(person.name);
+// As we can see setting writable and configurable to false doesn't allow us to change or delete the name property
