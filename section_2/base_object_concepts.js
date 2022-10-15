@@ -88,7 +88,7 @@ console.log(Object.keys(circle4)); // returns array
 
 if ("radius" in circle4) {
     console.log("Circle has a radius.");
-} // check for existance of a property
+} // check for existence of a property
 
 // exemples of abstraction
 function CircleAbstract(radius, location) {
